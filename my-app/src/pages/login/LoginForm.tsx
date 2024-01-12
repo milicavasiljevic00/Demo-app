@@ -2,17 +2,13 @@ import { useState } from 'react';
 import { Container, Grid, Button, TextField, Box } from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './LoginForm.scss'
+import { LoginFormValue } from './models/LoginFormValue';
 
-type FormValue = {
-    username: string,
-    password: string
-}
-
-const Loginform = () => {
-    const { register, handleSubmit, formState: { errors }, } = useForm<FormValue>()
+const LoginForm = () => {
+    const { register, handleSubmit, formState: { errors }, } = useForm<LoginFormValue>()
     const [data, setData] = useState({ username: '', password: '' })
 
-    const onSubmit: SubmitHandler<FormValue> = (data) => {
+    const onSubmit: SubmitHandler<LoginFormValue> = (data) => {
         console.log("final data", data)
         alert(data.username)
     }
@@ -76,4 +72,4 @@ const Loginform = () => {
     )
 
 }
-export default Loginform;
+export default LoginForm;
