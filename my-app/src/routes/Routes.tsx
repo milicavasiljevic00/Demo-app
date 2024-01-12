@@ -1,13 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import LoginForm from "../pages/login/LoginForm";
+import NavbarWrapper from "../components/navbar/NavbarWrapper";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <NavbarWrapper />,
     children: [
-      { path: "login", element: <LoginForm /> },
+        {
+            path: "/", element: <App/>
+        },
+        { path: "login", element: <LoginForm /> },
     ],
   },
 ]);
+
