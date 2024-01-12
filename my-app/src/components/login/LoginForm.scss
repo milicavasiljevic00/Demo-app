@@ -1,0 +1,22 @@
+$background-color_primary: #302874;
+$background-color_secondary: #fff;
+$color_primary:red;
+
+.bg-color{
+    background-color: $background-color_primary;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.form-wrapper{
+    background-color: $background-color_secondary;
+    width: 50%;
+    padding: 20px 30px 30px;
+    border-radius: 20px;
+    margin: 100px auto;
+}
+.error-msg{
+    color: $color_primary;
+}
