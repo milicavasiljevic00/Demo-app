@@ -2,10 +2,14 @@ import { useState } from 'react';
 import { Container, Grid, Button, TextField, Box } from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './RegisterForm.scss'
-import { UserContactInfo } from './models/UserContactInfo';
-import { RegisterFormValue } from './models/RegisterFormValue';
+import { UserContactInfo } from '../../models/register-form-value/UserContactInfo';
+import { RegisterFormValue } from '../../models/register-form-value/RegisterFormValue';
+import { UserHttp } from '../../api/http-services/users.http';
 
 const RegisterForm = () => {
+    
+    const user = new UserHttp();
+
     const { register, handleSubmit, formState: { errors }, } = useForm<RegisterFormValue>()
 
     const [data, setData] = useState({ username: '', password: '', firstName: '', lastName: '', email: '', phone: ''})
@@ -13,6 +17,8 @@ const RegisterForm = () => {
     const onSubmit: SubmitHandler<RegisterFormValue> = (data) => {
         console.log("final data", data)
         alert(data.username)
+
+        user.registerUser(data)
     }
 
     return (

@@ -6,7 +6,7 @@ const axiosClient = axios.create({
     Accept: "application/json",
     "Content-Type": "application/json",
   },
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: 'http://161.35.71.233:3000/v1',
 });
 
 export const getRequest = (

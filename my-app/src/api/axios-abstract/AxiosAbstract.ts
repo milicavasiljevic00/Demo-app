@@ -7,7 +7,7 @@ import {
   putRequest,
 } from "../axios-client/axios-client";
 
-export class AxiosAbstract<T extends {id:string}> {
+export class AxiosAbstract<T extends {id:number}> {
   private readonly _httpRoute;
 
   constructor(private httpRouteC: keyof HttpRoutes) {

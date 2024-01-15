@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Container, Grid, Button, TextField, Box } from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './LoginForm.scss'
-import { LoginFormValue } from './models/LoginFormValue';
+import { LoginFormValue } from '../../models/login-form-value/LoginFormValue';
 
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm<LoginFormValue>()
