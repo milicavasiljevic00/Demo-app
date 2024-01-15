@@ -11,7 +11,7 @@ export class AxiosAbstract<T extends {id:number}> {
   private readonly _httpRoute;
 
   constructor(private httpRouteC: keyof HttpRoutes) {
-    this._httpRoute = HttpRoutesImpl[httpRouteC];
+    this._httpRoute = '/v1'+ HttpRoutesImpl[httpRouteC];
   }
 
   get(params?: any): Promise<AxiosResponse<T[]>> {

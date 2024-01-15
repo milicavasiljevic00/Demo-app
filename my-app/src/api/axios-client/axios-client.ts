@@ -5,8 +5,7 @@ const axiosClient = axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-  },
-  baseURL: 'http://161.35.71.233:3000/v1',
+  }
 });
 
 export const getRequest = (

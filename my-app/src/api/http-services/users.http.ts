@@ -3,6 +3,7 @@ import { User } from "../../models/entities/User";
 import { AxiosResponse } from "axios";
 import { getRequest, postRequest } from "../axios-client/axios-client";
 import { RegisterFormValue } from "../../models/register-form-value/RegisterFormValue";
+import { LoginFormValue } from "../../models/login-form-value/LoginFormValue";
 
 interface CreateUserResponse {
     message: string;
@@ -27,13 +28,15 @@ export class UserHttp extends AxiosAbstract<User> {
   }
 
   registerUser(
-    query?: RegisterFormValue
+    body?: RegisterFormValue
   ): Promise<AxiosResponse<CreateUserResponse>> {
-    return postRequest(this.httpRoute, {
-      responseType: "json",
-      params: {
-        q: query,
-      },
-    });
+    return postRequest(this.httpRoute, body);
   }
+
+  loginUser(
+    body?: LoginFormValue
+  ): Promise<AxiosResponse<CreateUserResponse>> {
+    return postRequest(this.httpRoute + "/auth", body);
+  }
+  
 }
