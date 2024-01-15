@@ -7,6 +7,7 @@ import { RegisterFormValue } from './models/RegisterFormValue';
 
 const RegisterForm = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm<RegisterFormValue>()
+
     const [data, setData] = useState({ username: '', password: '', firstName: '', lastName: '', email: '', phone: ''})
 
     const onSubmit: SubmitHandler<RegisterFormValue> = (data) => {
