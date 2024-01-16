@@ -1,16 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Grid, Button, TextField, Box } from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './LoginForm.scss'
-import { LoginFormValue } from './models/LoginFormValue';
+import { LoginFormValue } from '../../models/login-form-value/LoginFormValue';
+import { UserHttp } from '../../api/http-services/users.http';
+import { useNavigate } from 'react-router';
 
 const LoginForm = () => {
-    const { register, handleSubmit, formState: { errors }, } = useForm<LoginFormValue>()
-    const [data, setData] = useState({ username: '', password: '' })
 
-    const onSubmit: SubmitHandler<LoginFormValue> = (data) => {
-        console.log("final data", data)
-        alert(data.username)
+    const user = new UserHttp()
+
+    const { register, handleSubmit, formState: { errors }, trigger  } = useForm<LoginFormValue>({mode: 'onBlur'})
+    const [data, setData] = useState<LoginFormValue>({ username: '', password: ''})
+    const navigate = useNavigate();
+
+    const onSubmit: SubmitHandler<LoginFormValue> = async () => {
+          user.loginUser(data);
+          navigate('/home')
+      }
+
+    const handleDataChange = (field: keyof LoginFormValue, partialData:Partial<LoginFormValue>) => {
+        setData({...data,...partialData});
     }
 
     return (
@@ -19,7 +29,7 @@ const LoginForm = () => {
                 <div className="form-wrapper">
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={12} lg={12} md={12}>
-                            <form onSubmit={handleSubmit(onSubmit)}>
+                            <div>
                                 <Box component="span" sx={{ p: 2, color: '#1d395d', textAlign: 'left' }}>
                                     <h1>Login</h1>
                                 </Box>
@@ -33,6 +43,8 @@ const LoginForm = () => {
 
                                         })
                                         }
+                                        value={data.username}  
+                                        onChange={(e) => handleDataChange('username', { username: e.target.value })}
                                     />
                                     {
                                         errors.username && (
@@ -48,21 +60,23 @@ const LoginForm = () => {
                                             required: "Password is required",
                                             minLength: {
                                                 value: 10,
-                                                message: "Password should be 10 characters long"
+                                                message: "Password should be minimum 10 characters long"
                                             }
                                         })
                                         }
+                                        value={data.password}  
+                                        onChange={(e) => handleDataChange('password', { password: e.target.value })}
                                         style={{ marginTop: '20px' }} />
                                     {
                                         errors.password && (
                                             <p className='error-msg'>{errors.password.message}</p>
                                         )
                                     }
-                                    <Button style={{ marginTop: '20px' }} type="submit" fullWidth variant="contained">Submit</Button>
+                                    <Button onClick={handleSubmit(onSubmit)} style={{ marginTop: '20px' }} fullWidth variant="contained">Submit</Button>
 
                                 </Box>
 
-                            </form>
+                            </div>
                         </Grid>
 
                     </Grid>

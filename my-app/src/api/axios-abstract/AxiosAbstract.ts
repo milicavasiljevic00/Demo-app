@@ -1,4 +1,4 @@
-import { HttpRoutes, HttpRoutesImpl } from "../enum/HttpRoutes";
+import { HttpRoutes, HttpRoutesImpl } from "../helpers/HttpRoutes";
 import { AxiosResponse } from "axios";
 import {
   deleteRequest,
@@ -7,11 +7,11 @@ import {
   putRequest,
 } from "../axios-client/axios-client";
 
-export class AxiosAbstract<T extends {id:string}> {
+export class AxiosAbstract<T extends {id:number}> {
   private readonly _httpRoute;
 
   constructor(private httpRouteC: keyof HttpRoutes) {
-    this._httpRoute = HttpRoutesImpl[httpRouteC];
+    this._httpRoute = '/v1'+ HttpRoutesImpl[httpRouteC];
   }
 
   get(params?: any): Promise<AxiosResponse<T[]>> {

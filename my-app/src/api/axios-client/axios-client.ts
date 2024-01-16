@@ -1,24 +1,23 @@
-import { HttpRoutes } from "../enum/HttpRoutes";
+import { HttpRoutes } from "../helpers/HttpRoutes";
 import axios, { AxiosRequestConfig } from "axios";
 
 const axiosClient = axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-  },
-  baseURL: process.env.REACT_APP_API_URL,
+  }
 });
 
 export const getRequest = (
   url: keyof HttpRoutes | string,
-  params?: AxiosRequestConfig
+  config?: AxiosRequestConfig
 ) => {
-  return axiosClient.get(url, params);
+  return axiosClient.get(url, config);
 };
 export const postRequest = (
   url: keyof HttpRoutes | string,
   body: any,
-  params?: {}
+  params?: AxiosRequestConfig
 ) => {
   return axiosClient.post(url, body, params);
 };
