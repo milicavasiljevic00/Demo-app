@@ -1,5 +1,5 @@
 export interface CreateUserResponse {
-    message: string;
-    statusCode: number;
-    time: string;
+    data: string;
+    status: number;
+    statusText: string;
   }

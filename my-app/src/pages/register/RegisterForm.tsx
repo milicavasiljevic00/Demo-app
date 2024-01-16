@@ -9,16 +9,20 @@ import { useNavigate } from 'react-router';
 
 const RegisterForm = () => {
     
-    const user = new UserHttp()
+    const userHttp = new UserHttp()
 
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValue>({mode: 'onBlur'})
 
     const [data, setData] = useState<RegisterFormValue>({ username: '', password: '', firstName: '', lastName: '', userContactInfo: {email: '', contactPhone: ''}})
     const navigate = useNavigate();
 
-    const onSubmit: SubmitHandler<RegisterFormValue> = () => {
-        user.registerUser(data);
-        navigate('/login');
+    const onSubmit: SubmitHandler<RegisterFormValue> = async() => {
+        const response = await userHttp.registerUser(data);
+        console.log(response)
+        if (response.status === 200) {
+            alert("Registration successful");
+            navigate('/login');
+        }
     }
 
     const handleDataChange = (partialData:Partial<RegisterFormValue>) => {

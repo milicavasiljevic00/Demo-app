@@ -5,18 +5,33 @@ import './LoginForm.scss'
 import { LoginFormValue } from '../../models/login-form-value/LoginFormValue';
 import { UserHttp } from '../../api/http-services/users.http';
 import { useNavigate } from 'react-router';
+import { useUserContext } from '../../context/UserContext';
+import { setCredentials } from '../../api/axios-client/axios-client';
+
 
 const LoginForm = () => {
 
-    const user = new UserHttp()
+    const userHttp = new UserHttp()
 
     const { register, handleSubmit, formState: { errors }, trigger  } = useForm<LoginFormValue>({mode: 'onBlur'})
     const [data, setData] = useState<LoginFormValue>({ username: '', password: ''})
+    const {user,logIn} = useUserContext();
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<LoginFormValue> = async () => {
-          user.loginUser(data);
-          navigate('/home')
+        setCredentials(true);
+        const response = await userHttp.loginUser(data);
+        console.log(response)
+        if(response.status==201)
+        {
+            const responseData = response.data;
+            logIn(responseData);
+            localStorage.setItem("user-logged", "user-logged");
+            //navigate('/home')
+        }
+        else{
+            
+        }
       }
 
     const handleDataChange = (field: keyof LoginFormValue, partialData:Partial<LoginFormValue>) => {
