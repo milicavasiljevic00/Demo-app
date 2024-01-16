@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
 import { Container, Grid, Button, TextField, Box } from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './RegisterForm.scss'
@@ -11,7 +11,7 @@ const RegisterForm = () => {
     
     const user = new UserHttp()
 
-    const { register, handleSubmit, formState: { errors }, } = useForm<RegisterFormValue>()
+    const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValue>({mode: 'onBlur'})
 
     const [data, setData] = useState<RegisterFormValue>({ username: '', password: '', firstName: '', lastName: '', userContactInfo: {email: '', contactPhone: ''}})
     const navigate = useNavigate();

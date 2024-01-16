@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Grid, Button, TextField, Box } from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './LoginForm.scss'
@@ -10,17 +10,17 @@ const LoginForm = () => {
 
     const user = new UserHttp()
 
-    const { register, handleSubmit, formState: { errors }, } = useForm<LoginFormValue>()
+    const { register, handleSubmit, formState: { errors }, trigger  } = useForm<LoginFormValue>({mode: 'onBlur'})
     const [data, setData] = useState<LoginFormValue>({ username: '', password: ''})
     const navigate = useNavigate();
 
-    const onSubmit: SubmitHandler<LoginFormValue> = () => {
-        user.loginUser(data);
-        navigate('/home')
-    }
+    const onSubmit: SubmitHandler<LoginFormValue> = async () => {
+          user.loginUser(data);
+          navigate('/home')
+      }
 
-    const handleDataChange = (partialData:Partial<LoginFormValue>) => {
-        setData({...data,...partialData})
+    const handleDataChange = (field: keyof LoginFormValue, partialData:Partial<LoginFormValue>) => {
+        setData({...data,...partialData});
     }
 
     return (
@@ -44,7 +44,7 @@ const LoginForm = () => {
                                         })
                                         }
                                         value={data.username}  
-                                        onChange={(e) => handleDataChange({ username: e.target.value })}
+                                        onChange={(e) => handleDataChange('username', { username: e.target.value })}
                                     />
                                     {
                                         errors.username && (
@@ -60,12 +60,12 @@ const LoginForm = () => {
                                             required: "Password is required",
                                             minLength: {
                                                 value: 10,
-                                                message: "Password should be 10 characters long"
+                                                message: "Password should be minimum 10 characters long"
                                             }
                                         })
                                         }
                                         value={data.password}  
-                                        onChange={(e) => handleDataChange({ password: e.target.value })}
+                                        onChange={(e) => handleDataChange('password', { password: e.target.value })}
                                         style={{ marginTop: '20px' }} />
                                     {
                                         errors.password && (
