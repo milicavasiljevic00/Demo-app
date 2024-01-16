@@ -21,6 +21,10 @@ const RegisterForm = () => {
         navigate('/login');
     }
 
+    const handleDataChange = (partialData:Partial<RegisterFormValue>) => {
+        setData({...data,...partialData})
+    }
+
     return (
         <div className="bg-color">
             <Container fixed>
@@ -41,7 +45,7 @@ const RegisterForm = () => {
                                             })
                                         }  
                                         value={data.username}  
-                                        onChange={(e) => setData({ ...data, username: e.target.value })}
+                                        onChange={(e) => handleDataChange({ username: e.target.value })}
                                     />
                                     {
                                         errors.username && (
@@ -62,7 +66,7 @@ const RegisterForm = () => {
                                         })
                                         }
                                         value={data.password}  
-                                        onChange={(e) => setData({ ...data, password: e.target.value })} 
+                                        onChange={(e) => handleDataChange({ password: e.target.value })}
                                         style={{ marginTop: '20px' }} />
                                     {
                                         errors.password && (
@@ -79,7 +83,7 @@ const RegisterForm = () => {
                                         })
                                         }
                                         value={data.firstName}  
-                                        onChange={(e) => setData({ ...data, firstName: e.target.value })}
+                                        onChange={(e) => handleDataChange({ firstName: e.target.value })}
                                         style={{ marginTop: '20px' }} />
                                     {
                                         errors.firstName && (
@@ -97,7 +101,7 @@ const RegisterForm = () => {
                                         })
                                         }
                                         value={data.lastName}  
-                                        onChange={(e) => setData({ ...data, lastName: e.target.value })}
+                                        onChange={(e) => handleDataChange({ lastName: e.target.value })}
                                         style={{ marginTop: '20px' }} />
                                     {
                                         errors.lastName && (
@@ -115,7 +119,7 @@ const RegisterForm = () => {
                                         })
                                         }
                                         value={data.userContactInfo.email}  
-                                        onChange={(e) => setData({ ...data, userContactInfo: { ...data.userContactInfo, email: e.target.value } })}
+                                        onChange={(e) => handleDataChange({ userContactInfo: { ...data.userContactInfo, email: e.target.value } })}
                                         style={{ marginTop: '20px' }} />
                                     {
                                         errors.userContactInfo?.email && (
@@ -133,7 +137,7 @@ const RegisterForm = () => {
                                         })
                                         }
                                         value={data.userContactInfo.contactPhone}  
-                                        onChange={(e) => setData({ ...data, userContactInfo: { ...data.userContactInfo, contactPhone: e.target.value } })}
+                                        onChange={(e) => handleDataChange({ userContactInfo: { ...data.userContactInfo, contactPhone: e.target.value } })}
                                         style={{ marginTop: '20px' }} />
                                     {
                                         errors.userContactInfo?.contactPhone && (

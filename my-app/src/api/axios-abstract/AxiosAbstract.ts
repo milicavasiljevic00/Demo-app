@@ -1,4 +1,4 @@
-import { HttpRoutes, HttpRoutesImpl } from "../enum/HttpRoutes";
+import { HttpRoutes, HttpRoutesImpl } from "../helpers/HttpRoutes";
 import { AxiosResponse } from "axios";
 import {
   deleteRequest,

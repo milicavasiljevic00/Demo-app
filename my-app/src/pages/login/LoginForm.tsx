@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import './LoginForm.scss'
 import { LoginFormValue } from '../../models/login-form-value/LoginFormValue';
 import { UserHttp } from '../../api/http-services/users.http';
+import { useNavigate } from 'react-router';
 
 const LoginForm = () => {
 
@@ -11,9 +12,15 @@ const LoginForm = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm<LoginFormValue>()
     const [data, setData] = useState<LoginFormValue>({ username: '', password: ''})
+    const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<LoginFormValue> = () => {
         user.loginUser(data);
+        navigate('/home')
+    }
+
+    const handleDataChange = (partialData:Partial<LoginFormValue>) => {
+        setData({...data,...partialData})
     }
 
     return (
@@ -37,7 +44,7 @@ const LoginForm = () => {
                                         })
                                         }
                                         value={data.username}  
-                                        onChange={(e) => setData({ ...data, username: e.target.value })}
+                                        onChange={(e) => handleDataChange({ username: e.target.value })}
                                     />
                                     {
                                         errors.username && (
@@ -58,7 +65,7 @@ const LoginForm = () => {
                                         })
                                         }
                                         value={data.password}  
-                                        onChange={(e) => setData({ ...data, password: e.target.value })} 
+                                        onChange={(e) => handleDataChange({ password: e.target.value })}
                                         style={{ marginTop: '20px' }} />
                                     {
                                         errors.password && (
