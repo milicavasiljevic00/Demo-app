@@ -1,5 +1,7 @@
-export const MenuItemsUser=[
-    {
+import { MenuItems } from "./MenuItems";
+
+export const MenuItemsUser: MenuItems = {
+    items: [{
         title:'Home',
         url:'home'
     },
@@ -10,5 +12,5 @@ export const MenuItemsUser=[
     {
         title:'Orders',
         url:'orders'
-    }
-]
+    }]
+}

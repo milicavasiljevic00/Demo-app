@@ -1,5 +1,7 @@
-export const MenuItems=[
-    {
+import { MenuItems } from "./MenuItems";
+
+export const MenuItemsBase: MenuItems = {
+    items : [{
         title:'Home',
         url:'home'
     },
@@ -14,5 +16,5 @@ export const MenuItems=[
     {
         title:'Register',
         url:'register'
-    }
-]
+    }]
+}

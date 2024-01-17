@@ -5,8 +5,9 @@ import './LoginForm.scss'
 import { LoginFormValue } from '../../models/login-form-value/LoginFormValue';
 import { UserHttp } from '../../api/http-services/users.http';
 import { useNavigate } from 'react-router';
-import { useUserContext } from '../../context/UserContext';
+import { useUserContext } from '../../context/UserContextProvider';
 import { setCredentials } from '../../api/axios-client/axios-client';
+import { USER_LOGGED_KEY } from '../../constants/Constants';
 
 
 const LoginForm = () => {
@@ -20,17 +21,19 @@ const LoginForm = () => {
 
     const onSubmit: SubmitHandler<LoginFormValue> = async () => {
         setCredentials(true);
-        const response = await userHttp.loginUser(data);
-        console.log(response)
-        if(response.status==201)
-        {
-            const responseData = response.data;
-            logIn(responseData);
-            localStorage.setItem("user-logged", "user-logged");
-            //navigate('/home')
+        try{
+            const response = await userHttp.loginUser(data);
+            if(response.status==201)
+            {
+                const responseData = response.data;
+                logIn(responseData);
+                localStorage.setItem(USER_LOGGED_KEY, USER_LOGGED_KEY);
+                //navigate('/home')
+            }
         }
-        else{
-            
+        catch(error){
+            console.error("An error occurred:", error);
+            alert("Oops! Something went wrong. Please try again.");
         }
       }
 

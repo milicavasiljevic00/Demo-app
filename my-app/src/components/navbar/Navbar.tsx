@@ -2,16 +2,19 @@ import React, { useState, MouseEvent } from 'react';
 import { AppBar, Toolbar, Typography, Button, IconButton, Box, Menu, MenuList, MenuItem } from '@mui/material';
 import { Link, useNavigate} from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useUserContext } from '../../context/UserContext';
-import { MenuItems } from '../menu-items/MenuItems';
-import { MenuItemsUser } from '../menu-items/MenuItemsUser';
+import { useUserContext } from '../../context/UserContextProvider';
+import { MenuItemsBase } from './items-list/menu-items/MenuItemsBase';
+import { MenuItemsUser } from './items-list/menu-items/MenuItemsUser';
 import { useEffect } from 'react';
+import { MenuItems } from './items-list/menu-items/MenuItems';
+import ItemsList from './items-list/ItemsList';
+import useMenuItemsSwitch from './items-switch/UseMenuItemsSwitch';
 
 
 const Navbar: React.FC = () => {
 
   const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
-  const [items,setItems]=useState(MenuItems);
+  const [items,setItems]=useState<MenuItems>(MenuItemsBase);
   
   const navigate = useNavigate();
   const {user} = useUserContext();
@@ -24,10 +27,7 @@ const Navbar: React.FC = () => {
     setAnchorNav(null);
   };
 
-  useEffect(()=> {
-    user.role==="" && setItems(MenuItems);
-    user.role==="USER" && setItems(MenuItemsUser);
-  },[user])
+  useMenuItemsSwitch({user, setItems});
   
   return (
     <AppBar position="static">
@@ -36,13 +36,7 @@ const Navbar: React.FC = () => {
             Caption
         </Typography>
         <Box sx={{display:{xs:'none', md:'flex'}}}>
-            {items.map((item,index)=>{
-                return (
-                  <Button key={index} color="inherit" component={Link} to={`/${item.url}`} className="button">
-                    {item.title}
-                  </Button>
-                )
-            })}
+            <ItemsList items={items}></ItemsList>
         </Box>
 
         {
@@ -58,7 +52,7 @@ const Navbar: React.FC = () => {
             </IconButton>
             <Menu open={Boolean(anchorNav)} onClose={closeMenu} sx={{display:{xs:'flex', md:'none'}}}>
                 <MenuList>
-                  {items.map((item, index)=>{
+                  {items.items.map((item, index)=>{
                       return (
                         <MenuItem key={index} onClick={() => {navigate(`/${item.url}`)}}>{item.title}</MenuItem>
                       )

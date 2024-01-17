@@ -17,11 +17,16 @@ const RegisterForm = () => {
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<RegisterFormValue> = async() => {
-        const response = await userHttp.registerUser(data);
-        console.log(response)
-        if (response.status === 200) {
-            alert("Registration successful");
-            navigate('/login');
+        try{
+            const response = await userHttp.registerUser(data);
+            if (response.status === 200) {
+                alert("Registration successful");
+                navigate('/login');
+            }   
+        }
+        catch(error){
+            console.error("An error occurred:", error);
+            alert("Oops! Something went wrong. Please try again.");
         }
     }
 

@@ -26,15 +26,12 @@ export class UserHttp extends AxiosAbstract<User> {
   registerUser(
     body?: RegisterFormValue
   ): Promise<AxiosResponse<Object>> {
-    //da li mi treba cookie ovde?
     return postRequest(this.httpRoute, body);
   }
 
   loginUser(
     body?: LoginFormValue
   ): Promise<AxiosResponse<UserContent>> {
-    console.log("login")
-    console.log(getCredentials())
     return postRequest(this.httpRoute + "/auth", body);
   }
 
