@@ -1,11 +1,9 @@
 import React, { useState, MouseEvent } from 'react';
 import { AppBar, Toolbar, Typography, Button, IconButton, Box, Menu, MenuList, MenuItem } from '@mui/material';
-import { Link, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useUserContext } from '../../context/UserContextProvider';
 import { MenuItemsBase } from './items-list/menu-items/MenuItemsBase';
-import { MenuItemsUser } from './items-list/menu-items/MenuItemsUser';
-import { useEffect } from 'react';
 import { MenuItems } from './items-list/menu-items/MenuItems';
 import ItemsList from './items-list/ItemsList';
 import useMenuItemsSwitch from './items-switch/UseMenuItemsSwitch';
