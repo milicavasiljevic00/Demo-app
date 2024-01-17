@@ -8,13 +8,11 @@ import { MenuItemsSwitchProps } from "./MenuItemsSwitchProps";
 const useMenuItemsSwitch = ({ user, setItems }: MenuItemsSwitchProps) => {
   useEffect(() => {
     switch (user.role) {
-      case '':
-        setItems(MenuItemsBase);
-        break;
       case 'USER':
         setItems(MenuItemsUser);
         break;
       default:
+        setItems(MenuItemsBase);
         break;
     }
   }, [user, setItems]);

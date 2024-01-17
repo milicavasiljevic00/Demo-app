@@ -12,8 +12,15 @@ const UserContextProvider = ({ children }: any) => {
     const [user, setUser] = useState<UserContent>(UserContentState);
 
     const fetchData = async () => {
-        const response = await userHttp.getUserMe();
-        setUser(response.data);
+
+        try{
+            const response = await userHttp.getUserMe();
+            setUser(response.data);
+        }
+        catch(error){
+            console.error("An error occurred:", error);
+            alert("Oops! Something went wrong. Please try again.");
+        }
     }
 
     useEffect(() => {

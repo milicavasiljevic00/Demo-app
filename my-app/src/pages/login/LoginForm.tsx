@@ -23,13 +23,9 @@ const LoginForm = () => {
         setCredentials(true);
         try{
             const response = await userHttp.loginUser(data);
-            if(response.status==201)
-            {
-                const responseData = response.data;
-                logIn(responseData);
-                localStorage.setItem(USER_LOGGED_KEY, USER_LOGGED_KEY);
-                //navigate('/home')
-            }
+            const responseData = response.data;
+            logIn(responseData);
+            localStorage.setItem(USER_LOGGED_KEY, USER_LOGGED_KEY);
         }
         catch(error){
             console.error("An error occurred:", error);
