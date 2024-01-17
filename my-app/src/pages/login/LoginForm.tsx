@@ -1,22 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Container, Grid, Button, TextField, Box } from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './LoginForm.scss'
 import { LoginFormValue } from '../../models/login-form-value/LoginFormValue';
 import { UserHttp } from '../../api/http-services/users.http';
 import { useNavigate } from 'react-router';
+import { useUserContext } from '../../context/UserContextProvider';
+import { setCredentials } from '../../api/axios-client/axios-client';
+import { USER_LOGGED_KEY } from '../../constants/Constants';
+
 
 const LoginForm = () => {
 
-    const user = new UserHttp()
+    const userHttp = new UserHttp()
 
     const { register, handleSubmit, formState: { errors }, trigger  } = useForm<LoginFormValue>({mode: 'onBlur'})
     const [data, setData] = useState<LoginFormValue>({ username: '', password: ''})
+    const {user,logIn} = useUserContext();
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<LoginFormValue> = async () => {
-          user.loginUser(data);
-          navigate('/home')
+        setCredentials(true);
+        try{
+            const response = await userHttp.loginUser(data);
+            const responseData = response.data;
+            logIn(responseData);
+            localStorage.setItem(USER_LOGGED_KEY, USER_LOGGED_KEY);
+        }
+        catch(error){
+            console.error("An error occurred:", error);
+            alert("Oops! Something went wrong. Please try again.");
+        }
       }
 
     const handleDataChange = (field: keyof LoginFormValue, partialData:Partial<LoginFormValue>) => {

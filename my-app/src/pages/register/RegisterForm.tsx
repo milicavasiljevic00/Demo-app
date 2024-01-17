@@ -1,24 +1,30 @@
-import { useEffect, useState} from 'react';
+import { useState} from 'react';
 import { Container, Grid, Button, TextField, Box } from "@mui/material";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './RegisterForm.scss'
-import { UserContactInfo } from '../../models/register-form-value/UserContactInfo';
 import { RegisterFormValue } from '../../models/register-form-value/RegisterFormValue';
 import { UserHttp } from '../../api/http-services/users.http';
 import { useNavigate } from 'react-router';
 
 const RegisterForm = () => {
     
-    const user = new UserHttp()
+    const userHttp = new UserHttp()
 
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValue>({mode: 'onBlur'})
 
     const [data, setData] = useState<RegisterFormValue>({ username: '', password: '', firstName: '', lastName: '', userContactInfo: {email: '', contactPhone: ''}})
     const navigate = useNavigate();
 
-    const onSubmit: SubmitHandler<RegisterFormValue> = () => {
-        user.registerUser(data);
-        navigate('/login');
+    const onSubmit: SubmitHandler<RegisterFormValue> = async() => {
+        try{
+            await userHttp.registerUser(data);
+            alert("Registration successful");
+            navigate('/login');  
+        }
+        catch(error){
+            console.error("An error occurred:", error);
+            alert("Oops! Something went wrong. Please try again.");
+        }
     }
 
     const handleDataChange = (partialData:Partial<RegisterFormValue>) => {

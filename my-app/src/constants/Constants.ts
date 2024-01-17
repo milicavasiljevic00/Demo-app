@@ -1,0 +1,1 @@
+export const USER_LOGGED_KEY = "user-logged";
