@@ -19,15 +19,17 @@ const UserContextProvider = ({ children }: any) => {
         }
         catch(error){
             console.error("An error occurred:", error);
-            alert("Oops! Something went wrong. Please try again.");
+            alert("Oops! Something went wrong in context. Please try again.");
         }
+
     }
 
     useEffect(() => {
 
         if (localStorage.getItem(USER_LOGGED_KEY)) {
-
-        fetchData().catch(console.error);
+            console.log("Hello")
+            
+            fetchData().catch(console.error);
         }
 
     },[])

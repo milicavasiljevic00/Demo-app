@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
   useMenuItemsSwitch({user, setItems});
   
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: 'rgb(214, 129, 1)' }}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, display:{xs:'none', md:'flex'} }}>
             Caption
@@ -38,8 +38,8 @@ const Navbar: React.FC = () => {
         </Box>
 
         {
-          user.role==="USER" && 
-          <Button color="inherit" className="button-username">
+          user.role!=="" && 
+          <Button color="inherit" className="button-username" sx={{display:{xs:'none', md:'flex'}}}>
             {user.username}
           </Button>
         }

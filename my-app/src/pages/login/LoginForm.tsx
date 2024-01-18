@@ -86,7 +86,7 @@ const LoginForm = () => {
                                             <p className='error-msg'>{errors.password.message}</p>
                                         )
                                     }
-                                    <Button onClick={handleSubmit(onSubmit)} style={{ marginTop: '20px' }} fullWidth variant="contained">Submit</Button>
+                                    <Button onClick={handleSubmit(onSubmit)} style={{ backgroundColor: 'rgb(214, 129, 1)' , marginTop: '20px' }} fullWidth variant="contained">Submit</Button>
 
                                 </Box>
 

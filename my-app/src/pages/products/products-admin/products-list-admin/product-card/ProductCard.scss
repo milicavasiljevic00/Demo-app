@@ -1,0 +1,62 @@
+$color_primary: #fff;
+$color_secondary: rgb(180, 112, 8);;
+$font-family_primary: "Times New Roman", Times, serif;
+$background-color_primary: rgb(211, 146, 48);
+
+.product-card{
+  display: grid;
+  grid-template-rows: 75% 25%;
+  background-color: $background-color_primary;
+  color: $color_primary;
+  border-radius: 10px;
+  font-size: medium;
+  box-shadow: 3px 5px 5px gray;
+}
+
+.product-info{
+  display: grid;
+  grid-template-rows: 50% 50%;
+}
+
+.caption-txt {
+  color: $color_primary;
+  font-size: 25px;
+  align-self: center;
+  font-family: $font-family_primary;
+  margin-top: 50px;
+}
+
+.price-section {
+  font-family: $font-family_primary;
+  font-size: 20px;
+  align-self: center;
+}
+
+.product-options{
+  display:grid;
+  grid-template-columns: 50% 50%;
+}
+
+.product-option-btn{
+  width:100%;
+  height:100%;
+  background-color: white;
+  color: $color_secondary;
+  border:none;
+  font-size: large;
+}
+
+.product-option-btn:hover{
+  background-color: #d8d3d3;
+  cursor: pointer;
+}
+
+.edit{
+  border-bottom-left-radius: 10px;
+}
+
+.delete{
+  border-bottom-right-radius: 10px;
+}
+
+  

@@ -1,16 +1,16 @@
 import { MenuItems } from "./MenuItems";
 
-export const MenuItemsUser: MenuItems = {
-    items: [{
+export const MenuItemsWarehouseAdmin: MenuItems = {
+    items : [{
         title:'Home',
         url:'home'
     },
     {
         title:'Products',
-        url:'products-user'
+        url:'products-admin'
     },
     {
-        title:'My orders',
-        url:'my-orders'
+        title:'Orders',
+        url:'orders'
     }]
 }
