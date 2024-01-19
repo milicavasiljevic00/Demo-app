@@ -6,16 +6,18 @@ import Modal from '../../../../../components/popup/Modal'
 import EditForm from './product-options/EditForm'
 import DeleteForm from './product-options/DeleteForm'
 import { useModalContext } from '../../../../../components/popup/modal-context/ModalContext'
+import { useUserContext } from '../../../../../context/UserContextProvider'
 
-const ProductCard:  React.FC<ProductCardProps> = ({product, onEdit, onDelete}) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, onEdit, onDelete }) => {
 
-  const {open} = useModalContext();
+  const { open } = useModalContext();
+  const { user } = useUserContext();
 
-  function handleOpenEdit(){
+  function handleOpenEdit() {
     open(<EditForm product={product} onEdit={onEdit}></EditForm>)
   }
 
-  function handleOpenDelete(){
+  function handleOpenDelete() {
     open(<DeleteForm product={product} onDelete={onDelete}></DeleteForm>)
   }
 
@@ -28,9 +30,12 @@ const ProductCard:  React.FC<ProductCardProps> = ({product, onEdit, onDelete}) =
           <p>{product.quantity}</p>
         </div>
       </div>
-      <div className="product-options">
-        <button className='product-option-btn edit' onClick={handleOpenEdit}>EDIT</button>
-        <button className='product-option-btn delete' onClick={handleOpenDelete}>DELETE</button>
+      <div className={user.role === "ADMINISTRATOR" ? "product-options" : "product-option"}>
+        <button className={user.role === "ADMINISTRATOR" ? 'product-option-btn edit' : 'product-option-btn only-edit'} onClick={handleOpenEdit}>EDIT</button>
+        {
+          user.role === "ADMINISTRATOR" &&
+          <button className='product-option-btn delete' onClick={handleOpenDelete}>DELETE</button>
+        }
       </div>
     </div>
   )

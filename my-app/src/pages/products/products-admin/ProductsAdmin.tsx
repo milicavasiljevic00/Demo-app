@@ -10,49 +10,47 @@ import { useModalContext } from '../../../components/popup/modal-context/ModalCo
 
 const ProductsAdmin = () => {
 
-const [products,setProducts] = useState<ProductAdmin[]>([]);
+  const [products, setProducts] = useState<ProductAdmin[]>([]);
 
-const productHttp = new ProductHttp()
-const {open} = useModalContext();
+  const productHttp = new ProductHttp()
+  const { open } = useModalContext();
 
-function handleOpen() {
-  open(<AddForm onAdd={addProduct} />);
-}
+  function handleOpen() {
+    open(<AddForm onAdd={addProduct} />);
+  }
 
-const fetchProducts = async () => {
+  const fetchProducts = async () => {
     try {
       const response = await productHttp.getProductsAdmin();
-      setProducts(response.data); 
+      setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
     }
-};
+  };
 
-const deleteProduct = (id:number) => {
-    const pr = products.filter((p) => p.id!==id);
+  const deleteProduct = (id: number) => {
+    const pr = products.filter((p) => p.id !== id);
     setProducts(pr);
-}
+  }
 
-const addProduct = (newProduct:ProductAdmin) => {
-  setProducts([...products, newProduct]);
-}
+  const addProduct = (newProduct: ProductAdmin) => {
+    setProducts([...products, newProduct]);
+  }
 
-useEffect(() => {
+  useEffect(() => {
     fetchProducts();
-}, []);
+  }, []);
 
   return (
-    <>
     <div className="page-container">
       <div className="products-container">
-          <h1 className="caption">All products</h1>
-          <Button onClick={handleOpen} style={{backgroundColor:'rgb(214, 129, 1)'}}className="add-btn" variant="contained" color="primary">
-            Add
-          </Button>
-          <ProductsList products={products} onEdit={fetchProducts} onDelete={deleteProduct}/>
+        <h1 className="caption">All products</h1>
+        <Button onClick={handleOpen} style={{ backgroundColor: 'rgb(214, 129, 1)' }} className="add-btn" variant="contained" color="primary">
+          Add
+        </Button>
+        <ProductsList products={products} onEdit={fetchProducts} onDelete={deleteProduct} />
       </div>
     </div>
-    </>
   )
 }
 
