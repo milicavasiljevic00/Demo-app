@@ -3,23 +3,24 @@ import { EditFormProps } from './EditFormProps'
 import { Button, TextField } from '@mui/material';
 import { ProductAdmin } from '../../../../../../models/entities/ProductAdmin';
 import { ProductHttp } from '../../../../../../api/http-services/products.http';
+import { useModalContext } from '../../../../../../components/popup/modal-context/ModalContext';
 
-const EditForm : React.FC<EditFormProps> = ({ product, onEdit, onClose }) => {
+const EditForm : React.FC<EditFormProps> = ({ product, onEdit }) => {
 
     const [productInfo, setProductInfo] = useState<ProductAdmin>(product);
 
     const productHttp = new ProductHttp()
+    const {close} = useModalContext();
 
     const handleChange = (partialData:Partial<ProductAdmin>) => {
         setProductInfo({...productInfo,...partialData});
     }
    
     const handleSubmit = async() => {
-        console.log(productInfo);
         try{
             await productHttp.editProduct(productInfo);
             onEdit();
-            onClose();
+            close();
         }
         catch(error){
             console.log(error);

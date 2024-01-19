@@ -1,25 +1,16 @@
-import { ModalProps } from '@mui/material'
 import React from 'react'
 import './Modal.scss'
+import { ModalProps } from './ModalProps'
+import { useModalContext } from './modal-context/ModalContext'
 
-const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ children }) => {
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        if (onClose) {
-            onClose(event, 'backdropClick'); 
-        }
-    };
-
-    const handleDivClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (event.target === event.currentTarget && onClose) {
-            onClose(event, 'backdropClick'); 
-        }
-    };
+  const {close} = useModalContext();
 
   return (
-    <div className={`${"modal"} ${open ? "display-block" : "display-none"}`} onClick={handleDivClick}>
+    <div className="modal display-block" >
         <div className="modal-main">
-            <i className="fa-solid fa-x close-modal" onClick={handleClick}></i>
+            <i className="fa-solid fa-x close-modal" onClick={close}></i>
             <div className="modal-body">
                 {children}
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { EditFormProps } from './EditFormProps'
 import { Box, Button, TextField } from '@mui/material';
 import { ProductAdmin } from '../../../../../../models/entities/ProductAdmin';
@@ -6,9 +6,10 @@ import { ProductHttp } from '../../../../../../api/http-services/products.http';
 import { AddFormProps } from './AddFormProps';
 import { CreateProduct } from '../../../../../../models/entities/CreateProduct';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useModalContext } from '../../../../../../components/popup/modal-context/ModalContext';
 
 
-const AddForm : React.FC<AddFormProps> = ({ onAdd, onClose }) => {
+const AddForm : React.FC<AddFormProps> = ({ onAdd }) => {
 
     const [productInfo, setProductInfo] = useState<CreateProduct>({
         name: '',
@@ -18,15 +19,18 @@ const AddForm : React.FC<AddFormProps> = ({ onAdd, onClose }) => {
     const { register, handleSubmit, formState: { errors }} = useForm<CreateProduct>({mode: 'onBlur'})
 
     const productHttp = new ProductHttp();
+    const {close} = useModalContext();
 
     const onSubmit: SubmitHandler<CreateProduct> = async () => {
         try{
-            await productHttp.addProduct(productInfo);
-            onClose();
+            const response = await productHttp.addProduct(productInfo);
+            const responseData = response.data;
+            close();
             setProductInfo({
                 name: '',
                 price: 0,
                 quantity: 0})
+                onAdd(responseData);
         }
         catch(error){
             console.log(error);

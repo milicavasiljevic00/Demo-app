@@ -4,6 +4,7 @@ import LoginForm from "../pages/login/LoginForm";
 import NavbarWrapper from "../components/navbar/NavbarWrapper";
 import RegisterForm from "../pages/register/RegisterForm";
 import ProductsAdmin from "../pages/products/products-admin/ProductsAdmin";
+import {Protected} from "./Protected";
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
       },
       { path: "login", element: <LoginForm /> },
       { path: "register", element: <RegisterForm /> },
-      { path: "products-admin", element: <ProductsAdmin /> },
+      { path: "products-admin", element: <Protected role="ADMINISTRATOR" content={<ProductsAdmin />} /> },
     ],
   },
 ]);

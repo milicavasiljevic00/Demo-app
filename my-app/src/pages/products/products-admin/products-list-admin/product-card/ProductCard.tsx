@@ -5,22 +5,21 @@ import './ProductCard.scss'
 import Modal from '../../../../../components/popup/Modal'
 import EditForm from './product-options/EditForm'
 import DeleteForm from './product-options/DeleteForm'
+import { useModalContext } from '../../../../../components/popup/modal-context/ModalContext'
 
 const ProductCard:  React.FC<ProductCardProps> = ({product, onEdit, onDelete}) => {
 
-  const [showEditModal, setShowEditModal] = useState<boolean>(false);
-  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const {open} = useModalContext();
 
-  function toggleEditModal() {
-      setShowEditModal(!showEditModal);
+  function handleOpenEdit(){
+    open(<EditForm product={product} onEdit={onEdit}></EditForm>)
   }
 
-  function toggleDeleteModal() {
-    setShowDeleteModal(!showDeleteModal);
-  } 
+  function handleOpenDelete(){
+    open(<DeleteForm product={product} onDelete={onDelete}></DeleteForm>)
+  }
 
   return (
-    <>
     <div className="product-card">
       <div className="product-info">
         <h4 className="caption-txt">{product.name}</h4>
@@ -30,19 +29,10 @@ const ProductCard:  React.FC<ProductCardProps> = ({product, onEdit, onDelete}) =
         </div>
       </div>
       <div className="product-options">
-        <button className='product-option-btn edit' onClick={toggleEditModal}>EDIT</button>
-        <button className='product-option-btn delete' onClick={toggleDeleteModal}>DELETE</button>
+        <button className='product-option-btn edit' onClick={handleOpenEdit}>EDIT</button>
+        <button className='product-option-btn delete' onClick={handleOpenDelete}>DELETE</button>
       </div>
     </div>
-
-    <Modal open={showEditModal} onClose={toggleEditModal}>
-      <EditForm product={product} onEdit={onEdit} onClose={toggleEditModal}/>
-    </Modal>
-
-    <Modal open={showDeleteModal} onClose={toggleDeleteModal}>
-      <DeleteForm product={product} onClose={toggleDeleteModal} onDelete={onDelete}/>
-    </Modal>
-    </>
   )
 }
 
