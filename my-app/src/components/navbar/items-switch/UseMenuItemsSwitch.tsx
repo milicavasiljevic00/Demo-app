@@ -7,7 +7,7 @@ import { MenuItemsWarehouseAdmin } from "../items-list/menu-items/MenuItemsWareh
 
 const useMenuItemsSwitch = ({ user, setItems }: MenuItemsSwitchProps) => {
   useEffect(() => {
-    switch (user.role) {
+    switch (user?.role) {
       case 'USER':
         setItems(MenuItemsUser);
         break;
@@ -25,4 +25,3 @@ const useMenuItemsSwitch = ({ user, setItems }: MenuItemsSwitchProps) => {
 };
 
 export default useMenuItemsSwitch;
-  

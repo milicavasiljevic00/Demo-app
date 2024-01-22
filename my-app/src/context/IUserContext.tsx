@@ -1,8 +1,7 @@
 import { UserContent } from "./UserContent";
 
 export interface IUserContext {
-    user: UserContent;
+    user: UserContent | null;
     logIn: (user: UserContent) => void;
     logOut: () => void;
-    loaded: boolean;
 }

@@ -9,33 +9,41 @@ const useUserContext = () => useContext(UserContext)
 const UserContextProvider = ({ children }: any) => {
 
     const userHttp = new UserHttp();
-    const [user, setUser] = useState<UserContent>(UserContentState);
-    const [loaded, setLoaded] = useState<boolean>(false);
+    const [user, setUser] = useState<UserContent | null>(null);
 
-    const fetchData = async () => {
 
+    const fetchData = async (): Promise<UserContent | null> => {
         try {
             const response = await userHttp.getUserMe();
-            setUser(response.data);
-            //setLoaded(true);
+            return response.data;
         }
         catch (error) {
             console.error("An error occurred:", error);
-            alert("Oops! Something went wrong in context. Please try again.");
-            setLoaded(false);
+            return null;
         }
+
+    }
+
+    const fetchAndSet = () => {
+        fetchData().then((userData) => {
+            if (userData) {
+                setUser(userData);
+            }
+            else {
+                setUser(UserContentState);
+            }
+        }).catch((error) => {
+            setUser(UserContentState);
+            console.log(error);
+        });
 
     }
 
     useEffect(() => {
 
         if (localStorage.getItem(USER_LOGGED_KEY)) {
-            console.log("Hello")
-
-            fetchData().catch(console.error);
-            setLoaded(true);
+            fetchAndSet();
         }
-
     }, [])
 
     function logIn(user: UserContent) {
@@ -48,7 +56,7 @@ const UserContextProvider = ({ children }: any) => {
     }
 
     return (
-        <UserContext.Provider value={{ user, logIn, logOut, loaded }}>
+        <UserContext.Provider value={{ user, logIn, logOut }}>
             {children}
         </UserContext.Provider>
     )

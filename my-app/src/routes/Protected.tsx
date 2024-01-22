@@ -1,25 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { ProtectedProps } from './ProtectedProps'
 import { useUserContext } from '../context/UserContextProvider';
 import { Navigate } from "react-router-dom";
+import { UserContent } from '../context/UserContent';
+import { UserRoles } from './UserRoles';
 
 
 export const Protected = ({ role, content }: ProtectedProps) => {
 
-    const { user, loaded } = useUserContext();
-    const split1: string[] = role.split(/\s+/);
+    const { user } = useUserContext();
+
     useEffect(() => {
-        console.log(user.role)
-    }, [loaded])
+    }, [user])
 
-
-    /*if (loading) {
-        return <>{ }</>
+    if (!user) {
+        return <Suspense><div>Loading...</div></Suspense>
     }
 
-    if (split1.includes(user.role)) {
-        return <>{content}</>
-    }*/
+    return role.includes(user?.role as UserRoles) ? <>{content}</> : <Navigate to="/login" replace={true} />
 
-    return (split1.includes(user.role) && loaded) ? <>{content}</> : <Navigate to="/login" replace={true} />
 }

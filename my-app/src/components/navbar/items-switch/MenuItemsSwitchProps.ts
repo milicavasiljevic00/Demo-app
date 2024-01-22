@@ -5,6 +5,6 @@ import { MenuItems } from "../items-list/menu-items/MenuItems";
 type SetItemsFunction = Dispatch<SetStateAction<MenuItems>>;
 
 export interface MenuItemsSwitchProps {
-    user: UserContent;
-    setItems: SetItemsFunction; 
-  }
+  user: UserContent | null;
+  setItems: SetItemsFunction;
+}

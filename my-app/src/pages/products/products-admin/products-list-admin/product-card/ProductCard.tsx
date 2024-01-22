@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { ProductCardProps } from './ProductCardProps'
 import { CurrencyEnum } from '../../../../../models/currency-enum/CurrencyEnum'
 import './ProductCard.scss'
-import Modal from '../../../../../components/popup/Modal'
 import EditForm from './product-options/EditForm'
 import DeleteForm from './product-options/DeleteForm'
 import { useModalContext } from '../../../../../components/popup/modal-context/ModalContext'
@@ -30,10 +29,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onEdit, onDelete }) 
           <p>{product.quantity}</p>
         </div>
       </div>
-      <div className={user.role === "ADMINISTRATOR" ? "product-options" : "product-option"}>
-        <button className={user.role === "ADMINISTRATOR" ? 'product-option-btn edit' : 'product-option-btn only-edit'} onClick={handleOpenEdit}>EDIT</button>
+      <div className={user?.role === "ADMINISTRATOR" ? "product-options" : "product-option"}>
+        <button className={user?.role === "ADMINISTRATOR" ? 'product-option-btn edit' : 'product-option-btn only-edit'} onClick={handleOpenEdit}>EDIT</button>
         {
-          user.role === "ADMINISTRATOR" &&
+          user?.role === "ADMINISTRATOR" &&
           <button className='product-option-btn delete' onClick={handleOpenDelete}>DELETE</button>
         }
       </div>

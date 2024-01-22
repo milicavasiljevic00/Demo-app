@@ -6,6 +6,7 @@ import RegisterForm from "../pages/register/RegisterForm";
 import ProductsAdmin from "../pages/products/products-admin/ProductsAdmin";
 import { Protected } from "./Protected";
 import OrdersAdmin from "../pages/orders/orders-admin/OrdersAdmin";
+import { UserRoles } from "./UserRoles";
 
 export const router = createBrowserRouter([
   {
@@ -17,9 +18,8 @@ export const router = createBrowserRouter([
       },
       { path: "login", element: <LoginForm /> },
       { path: "register", element: <RegisterForm /> },
-      { path: "products-admin", element: <Protected role="ADMINISTRATOR WAREHOUSE_ADMINISTRATOR" content={<ProductsAdmin />} /> },
-      { path: "orders", element: <Protected role="ADMINISTRATOR WAREHOUSE_ADMINISTRATOR" content={<OrdersAdmin />} /> },
+      { path: "products-admin", element: <Protected role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]} content={<ProductsAdmin />} /> },
+      { path: "orders", element: <Protected role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]} content={<OrdersAdmin />} /> },
     ],
   },
 ]);
-

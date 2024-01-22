@@ -14,27 +14,27 @@ const LoginForm = () => {
 
     const userHttp = new UserHttp()
 
-    const { register, handleSubmit, formState: { errors }, trigger  } = useForm<LoginFormValue>({mode: 'onBlur'})
-    const [data, setData] = useState<LoginFormValue>({ username: '', password: ''})
-    const {user,logIn} = useUserContext();
+    const { register, handleSubmit, formState: { errors }, trigger } = useForm<LoginFormValue>({ mode: 'onBlur' })
+    const [data, setData] = useState<LoginFormValue>({ username: '', password: '' })
+    const { user, logIn } = useUserContext();
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<LoginFormValue> = async () => {
-        setCredentials(true);
-        try{
+        //setCredentials(true);
+        try {
             const response = await userHttp.loginUser(data);
             const responseData = response.data;
             logIn(responseData);
             localStorage.setItem(USER_LOGGED_KEY, USER_LOGGED_KEY);
         }
-        catch(error){
+        catch (error) {
             console.error("An error occurred:", error);
             alert("Oops! Something went wrong. Please try again.");
         }
-      }
+    }
 
-    const handleDataChange = (field: keyof LoginFormValue, partialData:Partial<LoginFormValue>) => {
-        setData({...data,...partialData});
+    const handleDataChange = (field: keyof LoginFormValue, partialData: Partial<LoginFormValue>) => {
+        setData({ ...data, ...partialData });
     }
 
     return (
@@ -57,7 +57,7 @@ const LoginForm = () => {
 
                                         })
                                         }
-                                        value={data.username}  
+                                        value={data.username}
                                         onChange={(e) => handleDataChange('username', { username: e.target.value })}
                                     />
                                     {
@@ -78,7 +78,7 @@ const LoginForm = () => {
                                             }
                                         })
                                         }
-                                        value={data.password}  
+                                        value={data.password}
                                         onChange={(e) => handleDataChange('password', { password: e.target.value })}
                                         style={{ marginTop: '20px' }} />
                                     {
@@ -86,7 +86,7 @@ const LoginForm = () => {
                                             <p className='error-msg'>{errors.password.message}</p>
                                         )
                                     }
-                                    <Button onClick={handleSubmit(onSubmit)} style={{ backgroundColor: 'rgb(214, 129, 1)' , marginTop: '20px' }} fullWidth variant="contained">Submit</Button>
+                                    <Button onClick={handleSubmit(onSubmit)} style={{ backgroundColor: 'rgb(214, 129, 1)', marginTop: '20px' }} fullWidth variant="contained">Submit</Button>
 
                                 </Box>
 
