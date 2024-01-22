@@ -13,4 +13,10 @@ export class OrderHttp extends AxiosAbstract<Order> {
   ): Promise<AxiosResponse<Order[]>> {
     return getRequest(this.httpRoute);
   }
+
+  getPopularOrders(
+    query?: string
+  ): Promise<AxiosResponse<Order[]>> {
+    return getRequest(this.httpRoute + "/most-popular");
+  }
 }
