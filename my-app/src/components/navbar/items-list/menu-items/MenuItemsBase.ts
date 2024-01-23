@@ -6,10 +6,6 @@ export const MenuItemsBase: MenuItems = {
         url:'home'
     },
     {
-        title:'Products',
-        url:'products'
-    },
-    {
         title:'Login',
         url:'login'
     },

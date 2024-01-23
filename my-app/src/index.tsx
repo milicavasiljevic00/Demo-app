@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router';
 import { router } from './routes/Routes';
 import { UserContextProvider } from './context/UserContextProvider';
+import { ModalContextProvider } from './components/popup/modal-context/ModalContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <UserContextProvider>
-    < RouterProvider router={router} />
+      <ModalContextProvider>
+        <RouterProvider router={router} />
+      </ModalContextProvider>
     </UserContextProvider>
   </React.StrictMode>
 );

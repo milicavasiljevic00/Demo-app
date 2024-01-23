@@ -3,11 +3,10 @@ import axios, { AxiosRequestConfig } from "axios";
 
 var credentialsState = false;
 
-export function setCredentials(state:boolean){
-  credentialsState=state;
+export function setCredentials(state: boolean) {
+  credentialsState = state;
 }
-export function getCredentials()
-{
+export function getCredentials() {
   return credentialsState;
 }
 
@@ -16,7 +15,7 @@ const axiosClient = axios.create({
     Accept: "application/json",
     "Content-Type": "application/json",
   },
-  withCredentials: credentialsState, 
+  withCredentials: true,
 });
 
 export const getRequest = (

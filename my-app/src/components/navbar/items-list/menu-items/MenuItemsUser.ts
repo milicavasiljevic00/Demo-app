@@ -7,10 +7,10 @@ export const MenuItemsUser: MenuItems = {
     },
     {
         title:'Products',
-        url:'products'
+        url:'products-user'
     },
     {
-        title:'Orders',
-        url:'orders'
+        title:'My orders',
+        url:'my-orders'
     }]
 }
