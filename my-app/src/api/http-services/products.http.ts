@@ -3,6 +3,7 @@ import { ProductAdmin } from "../../models/entities/ProductAdmin";
 import { deleteRequest, getRequest, postRequest, putRequest } from "../axios-client/axios-client";
 import { AxiosResponse } from "axios";
 import { CreateProduct } from "../../models/entities/CreateProduct";
+import { ProductUser } from "../../models/entities/ProductUser";
 
 export class ProductHttp extends AxiosAbstract<ProductAdmin> {
   constructor() {
@@ -13,6 +14,12 @@ export class ProductHttp extends AxiosAbstract<ProductAdmin> {
     query?: string
   ): Promise<AxiosResponse<ProductAdmin[]>> {
     return getRequest(this.httpRoute + "/administrators");
+  }
+
+  getProductsUser(
+    query?: string
+  ): Promise<AxiosResponse<ProductUser[]>> {
+    return getRequest(this.httpRoute);
   }
 
   editProduct(

@@ -8,6 +8,7 @@ import { MenuItems } from './items-list/menu-items/MenuItems';
 import ItemsList from './items-list/ItemsList';
 import useMenuItemsSwitch from './items-switch/UseMenuItemsSwitch';
 import DropDownMenu from './items-list/drop-down-menu/DropDownMenu';
+import './Navbar.scss'
 
 
 const Navbar: React.FC = () => {
@@ -17,7 +18,7 @@ const Navbar: React.FC = () => {
   const [downMenu, setDownMenu] = useState<boolean>(false);
 
   const navigate = useNavigate();
-  const { user } = useUserContext();
+  const { user, orderProducts } = useUserContext();
 
   const openMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorNav(event.currentTarget);
@@ -31,6 +32,10 @@ const Navbar: React.FC = () => {
     setDownMenu(!downMenu);
   }
 
+  const handleCartClick = () => {
+    navigate('./my-cart');
+  }
+
   useMenuItemsSwitch({ user, setItems });
 
   return (
@@ -39,6 +44,18 @@ const Navbar: React.FC = () => {
         <Typography variant="h5" component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, fontFamily: 'revert-layer' }}>
           FoodDelivery
         </Typography>
+
+        {
+          user && user.role !== "" &&
+          <Button color="inherit" className="button-username" sx={{ display: { xs: 'none', md: 'flex' } }} onClick={handleCartClick}>
+            <i className="fa-solid fa-cart-shopping cart-icon"></i>
+            {
+              orderProducts.length > 0 &&
+              <div className="red-circle">{orderProducts.length}</div>
+            }
+          </Button>
+        }
+
         <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
           <ItemsList items={items}></ItemsList>
         </Box>

@@ -9,6 +9,8 @@ import OrdersAdmin from "../pages/orders/orders-admin/OrdersAdmin";
 import { UserRoles } from "./UserRoles";
 import Home from "../pages/home/Home";
 import AdminUsers from "../pages/admin-users/AdminUsers";
+import ProductsUser from "../pages/products/products-user/ProductsUser";
+import MyCart from "../pages/cart/MyCart";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +26,8 @@ export const router = createBrowserRouter([
       { path: "products-admin", element: <Protected role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]} content={<ProductsAdmin />} /> },
       { path: "orders", element: <Protected role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]} content={<OrdersAdmin />} /> },
       { path: "users-admin", element: <Protected role={[UserRoles.ADMINISTRATOR]} content={<AdminUsers />} /> },
+      { path: "products-user", element: <Protected role={[UserRoles.USER]} content={<ProductsUser />} /> },
+      { path: "my-cart", element: <Protected role={[UserRoles.USER]} content={<MyCart />} /> },
     ],
   },
 ]);
