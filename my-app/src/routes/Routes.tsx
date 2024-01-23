@@ -16,11 +16,11 @@ export const router = createBrowserRouter([
     element: <NavbarWrapper />,
     children: [
       {
-        path: "/", element: <App />
+        path: "/", element: <Home />
       },
       { path: "login", element: <LoginForm /> },
       { path: "register", element: <RegisterForm /> },
-      { path: "home", element: <Protected role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR, UserRoles.USER]} content={<Home />} /> },
+      { path: "home", element: <Home /> },
       { path: "products-admin", element: <Protected role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]} content={<ProductsAdmin />} /> },
       { path: "orders", element: <Protected role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]} content={<OrdersAdmin />} /> },
       { path: "users-admin", element: <Protected role={[UserRoles.ADMINISTRATOR]} content={<AdminUsers />} /> },

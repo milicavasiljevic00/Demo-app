@@ -20,12 +20,12 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<LoginFormValue> = async () => {
-        //setCredentials(true);
         try {
             const response = await userHttp.loginUser(data);
             const responseData = response.data;
             logIn(responseData);
             localStorage.setItem(USER_LOGGED_KEY, USER_LOGGED_KEY);
+            navigate('../home');
         }
         catch (error) {
             console.error("An error occurred:", error);
