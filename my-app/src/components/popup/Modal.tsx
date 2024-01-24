@@ -5,16 +5,14 @@ import { useModalContext } from './modal-context/ModalContext'
 
 const Modal: React.FC<ModalProps> = ({ children }) => {
 
-  const {close} = useModalContext();
+  const { close } = useModalContext();
 
   return (
     <div className="modal display-block" >
-        <div className="modal-main">
-            <i className="fa-solid fa-x close-modal" onClick={close}></i>
-            <div className="modal-body">
-                {children}
-            </div>
-        </div>
+      <div className="modal-main">
+        <i className="fa-solid fa-x close-modal" onClick={close}></i>
+        {children}
+      </div>
     </div>
   )
 }

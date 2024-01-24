@@ -1,3 +1,3 @@
 export interface CityWithId {
-    id: number;
+    id: string;
 }

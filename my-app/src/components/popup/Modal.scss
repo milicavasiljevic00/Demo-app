@@ -5,6 +5,7 @@
 	width: 100%;
 	height: 100%;
 	background: #00000099;
+	overflow: auto;
 }
 
 .modal-main {
@@ -12,7 +13,9 @@
 	background: white;
 	width: 35rem;
 	height: auto;
-	top: 40%;
+	max-height: 750px;
+	overflow-y: auto;
+	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	display: flex;
@@ -28,14 +31,11 @@
 
 .close-modal {
 	align-self: flex-end;
-	align-items: center;
 	border-width: 0px;
 	border-radius: 0px;
 	background-color: white;
 	color: black;
 	padding: 3px 3px;
-	text-align: center;
-	vertical-align: middle;
 	margin-right: 3px;
 	margin-top: 3px;
 }
@@ -44,6 +44,5 @@
 	transition: all 0.3s ease-out;
 	background: #fff;
 	color: rgb(180, 112, 8);
-	transition: 100ms;
 	cursor: pointer;
 }

@@ -1,20 +1,40 @@
-import { Button, TextField } from '@mui/material'
+import { Button, MenuItem, TextField } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CurrentOrder } from '../../models/entities/CurrentOrder';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { CurrentOrderInfo } from '../../models/entities/CurrentOrderInfo';
+import { City } from '../../models/entities/City';
+import { CityHttp } from '../../api/http-services/cities.http';
+import { useUserContext } from '../../context/UserContextProvider';
+import { ProductInCurrentOrder } from '../../models/entities/ProductInCurrentOrder';
+import { OrderHttp } from '../../api/http-services/orders.http';
+import { useModalContext } from '../../components/popup/modal-context/ModalContext';
 
 const OrderInfoForm = () => {
 
-    const [orderInfo, setOrderInfo] = useState<CurrentOrder>({
-        orderProducts: [], orderDeliveryInfo: undefined
+    const cityHttp = new CityHttp();
+    const orderHttp = new OrderHttp();
+
+    const [orderInfo, setOrderInfo] = useState<CurrentOrderInfo>({
+        city: { id: '' }, zip: '', street: '', number: ''
     });
+    const [cities, setCities] = useState<City[]>([]);
+    const { orderProducts } = useUserContext();
+    const { close } = useModalContext();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<CurrentOrder>({ mode: 'onBlur' })
+    const { register, handleSubmit, formState: { errors } } = useForm<CurrentOrderInfo>({ mode: 'onBlur' })
 
-    const onSubmit: SubmitHandler<CurrentOrder> = async () => {
+    const onSubmit: SubmitHandler<CurrentOrderInfo> = async () => {
         try {
-
+            const currentOrder = createCurrentOrder();
+            const response = await orderHttp.addOrder(currentOrder);
+            const responseData = response.data;
+            close();
+            setOrderInfo({
+                city: { id: '' }, zip: '', street: '', number: ''
+            });
+            alert("Order added.");
         }
         catch (error) {
             console.log(error);
@@ -22,29 +42,75 @@ const OrderInfoForm = () => {
         }
     }
 
-    const handleDataChange = (partialData: Partial<CurrentOrder>) => {
-        setOrderInfo({ ...orderInfo, ...partialData });
+    const createCurrentOrder = () => {
+        const orderProductsArray: ProductInCurrentOrder[] = orderProducts.map(
+            (productWithQuantity) => ({
+                product: { id: String(productWithQuantity.product.id) },
+                quantity: productWithQuantity.quantity,
+            })
+        );
+
+        const currentOrder: CurrentOrder = {
+            orderProducts: orderProductsArray,
+            orderDeliveryInfo: orderInfo,
+        };
+
+        return currentOrder;
     }
 
+    const fetchCities = async () => {
+        try {
+            const response = await cityHttp.getCities();
+            setCities(response.data);
+        } catch (error) {
+            console.error('Error fetching roles:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchCities();
+    }, [])
+
+    const handleDataChange = (partialData: Partial<CurrentOrderInfo>) => {
+        setOrderInfo({ ...orderInfo, ...partialData });
+    }
 
     return (
         <div>
             <Box style={{ padding: '20px' }}>
+                <Box component="span" sx={{ p: 2, color: '#1d395d', textAlign: 'left' }}>
+                    <h1>Enter order info</h1>
+                </Box>
+                <TextField
+                    fullWidth
+                    label="City"
+                    select
+                    value={orderInfo.city.id}
+                    onChange={(e) => handleDataChange({ city: { id: String(e.target.value) } })}
+                    style={{ marginBottom: '20px', marginLeft: '-16px' }}
+                >
+                    <MenuItem value="" disabled>Select a city</MenuItem>
+                    {cities.map((city) => (
+                        <MenuItem key={city.id} value={city.id}>
+                            {city.name}
+                        </MenuItem>
+                    ))}
+                </TextField>
                 <TextField fullWidth
                     label="Enter Zip"
                     placeholder="Zip"
                     {
-                    ...register("orderDeliveryInfo.zip", {
+                    ...register("zip", {
                         required: "Zip is required"
 
                     })
                     }
-                    value={orderInfo.orderDeliveryInfo?.zip}
-                    onChange={(e) => handleDataChange({ orderDeliveryInfo.zip: e.target.value })}
+                    value={orderInfo.zip}
+                    onChange={(e) => handleDataChange({ zip: e.target.value })}
                 />
                 {
-                    errors.orderDeliveryInfo?.zip && (
-                        <p className='error-msg'>{errors.orderDeliveryInfo.zip.message}</p>
+                    errors.zip && (
+                        <p className='error-msg'>{errors.zip.message}</p>
                     )
                 }
                 <TextField fullWidth
@@ -52,16 +118,16 @@ const OrderInfoForm = () => {
                     type="string"
                     placeholder='Street'
                     {
-                    ...register("orderDeliveryInfo.street", {
+                    ...register("street", {
                         required: "Street is required",
                     })
                     }
-                    value={orderInfo.orderDeliveryInfo?.street}
-                    onChange={(e) => handleDataChange({ price: parseInt(e.target.value) })}
+                    value={orderInfo.street}
+                    onChange={(e) => handleDataChange({ street: e.target.value })}
                     style={{ marginTop: '20px' }} />
                 {
-                    errors.orderDeliveryInfo?.street && (
-                        <p className='error-msg'>{errors.orderDeliveryInfo.street.message}</p>
+                    errors.street && (
+                        <p className='error-msg'>{errors.street.message}</p>
                     )
                 }
                 <TextField fullWidth
@@ -69,19 +135,19 @@ const OrderInfoForm = () => {
                     type="string"
                     placeholder='Number'
                     {
-                    ...register("orderDeliveryInfo.number", {
+                    ...register("number", {
                         required: "Number is required",
                     })
                     }
-                    value={orderInfo.orderDeliveryInfo?.number}
-                    onChange={(e) => handleDataChange({ price: parseInt(e.target.value) })}
+                    value={orderInfo.number}
+                    onChange={(e) => handleDataChange({ number: e.target.value })}
                     style={{ marginTop: '20px' }} />
                 {
-                    errors.orderDeliveryInfo?.number && (
-                        <p className='error-msg'>{errors.orderDeliveryInfo.number.message}</p>
+                    errors.number && (
+                        <p className='error-msg'>{errors.number.message}</p>
                     )
                 }
-                <Button onClick={handleSubmit(onSubmit)} style={{ backgroundColor: 'rgb(214, 129, 1)', marginTop: '20px' }} fullWidth variant="contained">Order</Button>
+                <Button onClick={handleSubmit(onSubmit)} style={{ backgroundColor: 'rgb(214, 129, 1)', marginTop: '30px' }} fullWidth variant="contained">Order</Button>
 
             </Box>
 
