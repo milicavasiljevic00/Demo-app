@@ -1,5 +1,5 @@
 .modal {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -10,7 +10,7 @@
 }
 
 .modal-main {
-	position: absolute;
+	position: fixed;
 	background: white;
 	width: 35rem;
 	height: auto;
