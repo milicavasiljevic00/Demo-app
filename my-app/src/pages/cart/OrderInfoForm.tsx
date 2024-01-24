@@ -20,7 +20,7 @@ const OrderInfoForm = () => {
         city: { id: '' }, zip: '', street: '', number: ''
     });
     const [cities, setCities] = useState<City[]>([]);
-    const { orderProducts } = useUserContext();
+    const { orderProducts, removeAllProducts } = useUserContext();
     const { close } = useModalContext();
 
     const { register, handleSubmit, formState: { errors } } = useForm<CurrentOrderInfo>({ mode: 'onBlur' })
@@ -34,6 +34,7 @@ const OrderInfoForm = () => {
             setOrderInfo({
                 city: { id: '' }, zip: '', street: '', number: ''
             });
+            removeAllProducts();
             alert("Order added.");
         }
         catch (error) {

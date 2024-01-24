@@ -2,7 +2,7 @@ import { createContext } from "react"
 import { UserContentState } from "./UserContent"
 import { IUserContext } from "./IUserContext";
 
-export const UserContext = createContext<IUserContext>({ user: UserContentState, logIn: () => { }, logOut: () => { }, orderProducts: [], addProduct: () => { }, removeProduct: () => { }, increaseQuantity: () => { }, decreaseQuantity: () => { } });
+export const UserContext = createContext<IUserContext>({ user: UserContentState, logIn: () => { }, logOut: () => { }, orderProducts: [], addProduct: () => { }, removeProduct: () => { }, removeAllProducts: () => { }, increaseQuantity: () => { }, decreaseQuantity: () => { } });
 
 
 

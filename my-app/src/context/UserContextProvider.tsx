@@ -66,6 +66,10 @@ const UserContextProvider = ({ children }: any) => {
         setOrderProducts(filteredProducts);
     }
 
+    function removeAllProducts() {
+        setOrderProducts([]);
+    }
+
     function increaseQuantity(id: number) {
         const product = orderProducts.find((p) => p.product.id === id);
         if (product) {
@@ -81,7 +85,7 @@ const UserContextProvider = ({ children }: any) => {
     }
 
     return (
-        <UserContext.Provider value={{ user, logIn, logOut, orderProducts, addProduct, removeProduct, increaseQuantity, decreaseQuantity }}>
+        <UserContext.Provider value={{ user, logIn, logOut, orderProducts, addProduct, removeProduct, removeAllProducts, increaseQuantity, decreaseQuantity }}>
             {children}
         </UserContext.Provider>
     )

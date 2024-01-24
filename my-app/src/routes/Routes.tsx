@@ -11,6 +11,7 @@ import Home from "../pages/home/Home";
 import AdminUsers from "../pages/admin-users/AdminUsers";
 import ProductsUser from "../pages/products/products-user/ProductsUser";
 import MyCart from "../pages/cart/MyCart";
+import OrdersUser from "../pages/orders/orders-user/OrdersUser";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       { path: "users-admin", element: <Protected role={[UserRoles.ADMINISTRATOR]} content={<AdminUsers />} /> },
       { path: "products-user", element: <Protected role={[UserRoles.USER]} content={<ProductsUser />} /> },
       { path: "my-cart", element: <Protected role={[UserRoles.USER]} content={<MyCart />} /> },
+      { path: "my-orders", element: <Protected role={[UserRoles.USER]} content={<OrdersUser />} /> },
     ],
   },
 ]);
