@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './Home.scss';
 import { OrderHttp } from '../../api/http-services/orders.http';
 import { Order } from '../../models/entities/Order';
+import PopularOrdersList from './most-popular-orders/PopularOrdersList';
+import { PopularOrder } from '../../models/entities/PopularOrder';
 
 const Home = () => {
 
-    const orders = [
-        { id: 0, date: 6 / 1 / 2024, total: 1, orderProducts: [{ name: "Product1", price: "1600", orderQuantity: 6, user: { firstName: "Milica", lastName: "Vasiljevic", username: "milicavasiljevic", userContactInfo: { email: "milicav@gmail.com", contactPhone: "+38167579876" } } }] }
-    ] //zavrsi ovde hardcode order?
-
-    /*const [orders, setOrders] = useState<Order[]>([]);
+    const [orders, setOrders] = useState<PopularOrder[]>([]);
 
     const orderHttp = new OrderHttp();
 
@@ -24,7 +22,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchPopularOrders();
-    }, [])*/
+    }, [])
 
     return (
         <div className='home'>
@@ -36,6 +34,7 @@ const Home = () => {
                 <div className="popular-container">
                     <div className="popular-orders-container">
                         <h1 className="home-caption">Most popular</h1>
+                        <PopularOrdersList popularOrders={orders} />
                     </div>
                 </div>
             </div>

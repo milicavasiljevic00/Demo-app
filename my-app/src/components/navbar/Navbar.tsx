@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
   useMenuItemsSwitch({ user, setItems });
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: 'rgb(214, 129, 1)', }}>
+    <AppBar position="sticky" sx={{ backgroundColor: 'rgb(214, 129, 1)' }}>
       <Toolbar>
         <Typography variant="h5" component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, fontFamily: 'revert-layer' }}>
           FoodDelivery

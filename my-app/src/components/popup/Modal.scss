@@ -6,6 +6,7 @@
 	height: 100%;
 	background: #00000099;
 	overflow: auto;
+	z-index: 1000000;
 }
 
 .modal-main {
@@ -22,7 +23,7 @@
 	flex-direction: column;
 	align-items: center;
 	border-radius: 5px;
-	z-index: 2;
+	z-index: 1000001;
 }
 
 .modal.display-block {

@@ -3,6 +3,7 @@ import { Order } from "../../models/entities/Order";
 import { AxiosResponse } from "axios";
 import { getRequest, postRequest } from "../axios-client/axios-client";
 import { CurrentOrder } from "../../models/entities/CurrentOrder";
+import { PopularOrder } from "../../models/entities/PopularOrder";
 
 export class OrderHttp extends AxiosAbstract<Order> {
   constructor() {
@@ -23,7 +24,7 @@ export class OrderHttp extends AxiosAbstract<Order> {
 
   getPopularOrders(
     query?: string
-  ): Promise<AxiosResponse<Order[]>> {
+  ): Promise<AxiosResponse<PopularOrder[]>> {
     return getRequest(this.httpRoute + "/most-popular");
   }
 
