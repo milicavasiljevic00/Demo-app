@@ -19,17 +19,53 @@ export const router = createBrowserRouter([
     element: <NavbarWrapper />,
     children: [
       {
-        path: "/", element: <Home />
+        path: "/",
+        element: <Home />,
       },
       { path: "login", element: <LoginForm /> },
       { path: "register", element: <RegisterForm /> },
       { path: "home", element: <Home /> },
-      { path: "products-admin", element: <Protected role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]} content={<ProductsAdmin />} /> },
-      { path: "orders", element: <Protected role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]} content={<OrdersAdmin />} /> },
-      { path: "users-admin", element: <Protected role={[UserRoles.ADMINISTRATOR]} content={<AdminUsers />} /> },
-      { path: "products-user", element: <Protected role={[UserRoles.USER]} content={<ProductsUser />} /> },
-      { path: "my-cart", element: <Protected role={[UserRoles.USER]} content={<MyCart />} /> },
-      { path: "my-orders", element: <Protected role={[UserRoles.USER]} content={<OrdersUser />} /> },
+      {
+        path: "products-admin",
+        element: (
+          <Protected
+            role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]}
+            content={<ProductsAdmin />}
+          />
+        ),
+      },
+      {
+        path: "orders",
+        element: (
+          <Protected
+            role={[UserRoles.ADMINISTRATOR, UserRoles.WAREHOUSE_ADMINISTRATOR]}
+            content={<OrdersAdmin />}
+          />
+        ),
+      },
+      {
+        path: "users-admin",
+        element: (
+          <Protected
+            role={[UserRoles.ADMINISTRATOR]}
+            content={<AdminUsers />}
+          />
+        ),
+      },
+      {
+        path: "products-user",
+        element: (
+          <Protected role={[UserRoles.USER]} content={<ProductsUser />} />
+        ),
+      },
+      {
+        path: "my-cart",
+        element: <Protected role={[UserRoles.USER]} content={<MyCart />} />,
+      },
+      {
+        path: "my-orders",
+        element: <Protected role={[UserRoles.USER]} content={<OrdersUser />} />,
+      },
     ],
   },
 ]);

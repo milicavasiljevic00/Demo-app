@@ -1,4 +1,4 @@
-export interface Item{
-    title: string;
-    url:string;
+export interface Item {
+  title: string;
+  url: string;
 }

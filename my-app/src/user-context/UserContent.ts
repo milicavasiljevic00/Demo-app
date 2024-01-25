@@ -7,9 +7,9 @@ export interface UserContent {
 }
 
 export const UserContentState: UserContent = {
-  username: '',
-  firstName: '',
-  lastName: '',
+  username: "",
+  firstName: "",
+  lastName: "",
   activated: false,
-  role: ''
-}
+  role: "",
+};

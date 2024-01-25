@@ -5,25 +5,25 @@ $background-color_secondary: #fff;
 $background-color_thirdly: rgb(241, 231, 231);
 
 .popular-order-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: $background-color_primary;
-    border-radius: 5px;
-    height: 200px;
-    width: 90%;
-    color: $color_primary;
-    box-shadow: 8px 8px 10px rgb(190, 187, 187);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: $background-color_primary;
+  border-radius: 5px;
+  height: 200px;
+  width: 90%;
+  color: $color_primary;
+  box-shadow: 8px 8px 10px rgb(190, 187, 187);
 }
 
 .popular-product-name {
-    font-size: 32px;
-    font-family: $font-family_primary;
-    font-weight: bold;
+  font-size: 32px;
+  font-family: $font-family_primary;
+  font-weight: bold;
 }
 
 .popular-product-price {
-    font-size: 22px;
-    font-family: $font-family_primary;
-    font-weight: bold;
+  font-size: 22px;
+  font-family: $font-family_primary;
+  font-weight: bold;
 }

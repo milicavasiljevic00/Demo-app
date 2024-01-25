@@ -3,10 +3,10 @@ import Navbar from "./Navbar";
 
 const NavbarWrapper: React.FC = () => {
     return (
-    <div>
-        <Navbar/>
-        <Outlet/>
-    </div>
+        <div>
+            <Navbar />
+            <Outlet />
+        </div>
     )
 };
 

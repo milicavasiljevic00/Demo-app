@@ -1,20 +1,19 @@
-import React from 'react'
-import './OrderProductsList';
-import { useUserContext } from '../../context/UserContextProvider';
-import OrderProductCard from './OrderProductCard';
-import './OrderProductCard.scss'
+import React from "react";
+import "./OrderProductsList";
+import OrderProductCard from "./OrderProductCard";
+import "./OrderProductCard.scss";
+import { useCartContext } from "../../cart-context/CartContextProvider";
 
 const OrderProductsList = () => {
+  const { orderProducts } = useCartContext();
 
-    const { orderProducts } = useUserContext();
-
-    return (
-        <div className="order-products-list">
-            {orderProducts.map((product, index) => (
-                <OrderProductCard key={index} orderProduct={product} />
-            ))}
-        </div>
-    )
-}
+  return (
+    <div className="order-products-list">
+      {orderProducts.map((product, index) => (
+        <OrderProductCard key={index} orderProduct={product} />
+      ))}
+    </div>
+  );
+};
 
 export default OrderProductsList;

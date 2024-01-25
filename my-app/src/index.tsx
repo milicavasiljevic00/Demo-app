@@ -1,21 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import reportWebVitals from './reportWebVitals';
-import { RouterProvider } from 'react-router';
-import { router } from './routes/Routes';
-import { UserContextProvider } from './context/UserContextProvider';
-import { ModalContextProvider } from './components/popup/modal-context/ModalContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import reportWebVitals from "./reportWebVitals";
+import { RouterProvider } from "react-router";
+import { router } from "./routes/Routes";
+import { UserContextProvider } from "./user-context/UserContextProvider";
+import { ModalContextProvider } from "./components/popup/modal-context/ModalContext";
+import { CartContextProvider } from "./cart-context/CartContextProvider";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <UserContextProvider>
-      <ModalContextProvider>
-        <RouterProvider router={router} />
-      </ModalContextProvider>
+      <CartContextProvider>
+        <ModalContextProvider>
+          <RouterProvider router={router} />
+        </ModalContextProvider>
+      </CartContextProvider>
     </UserContextProvider>
   </React.StrictMode>
 );
