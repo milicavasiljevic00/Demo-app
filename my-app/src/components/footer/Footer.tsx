@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container1">
         <div className="row">
           <div className="column">
-            <p className="heading">ShopEase</p>
+            <p className="heading">Shopee</p>
             <p style={{ color: "#FFFF" }}>
               Your prefferred online shopping platform. We offer seamless, fun
               and reliable shopping experience to millions users worldwide.

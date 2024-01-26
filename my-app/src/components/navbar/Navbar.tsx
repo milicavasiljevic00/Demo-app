@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
             fontSize: "32px",
           }}
         >
-          ShopEase
+          Shopee
         </Typography>
 
         {user && user.role !== "" && user.role === "USER" && (
@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
             display: { xs: "flex", md: "none", fontFamily: "cursive" },
           }}
         >
-          ShopEase
+          Shopee
         </Typography>
 
         {user && user.role !== "" && user.role === "USER" && (
