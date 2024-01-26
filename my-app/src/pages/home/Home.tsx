@@ -25,10 +25,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <img className="home-img" src="../../assets/home1-img.jpg"></img>
-      <div className="welcome-div">
-        <p>Welcome</p>
-      </div>
+      <img className="home-img" src="../../assets/shopee1.jpg"></img>
       <div>
         <div className="popular-container">
           <div className="popular-orders-container">

@@ -29,39 +29,37 @@ const MyCart = () => {
 
   return (
     <div className="bg-login-color">
-      <Container fixed>
-        <div className="div-wrapper">
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={12} lg={12} md={12}>
-              <div className="wrapper-content">
-                <Box
-                  component="span"
-                  sx={{ p: 2, color: "#1d395d", textAlign: "left" }}
+      <div className="div-wrapper">
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={12} lg={12} md={12}>
+            <div className="wrapper-content">
+              <Box
+                component="span"
+                sx={{ p: 2, color: "#1d395d", textAlign: "left" }}
+              >
+                <h1>My order</h1>
+              </Box>
+              <OrderProductsList />
+              <div className="total-price">
+                <label>Total:</label>
+                <p>
+                  {total} {CurrencyEnum.RSD}
+                </p>
+                <Button
+                  onClick={handleOrder}
+                  style={{
+                    backgroundColor: "rgb(214, 129, 1)",
+                    width: "100px",
+                  }}
+                  variant="contained"
                 >
-                  <h1>My order</h1>
-                </Box>
-                <OrderProductsList />
-                <div className="total-price">
-                  <label>Total:</label>
-                  <p>
-                    {total} {CurrencyEnum.RSD}
-                  </p>
-                  <Button
-                    onClick={handleOrder}
-                    style={{
-                      backgroundColor: "rgb(214, 129, 1)",
-                      width: "100px",
-                    }}
-                    variant="contained"
-                  >
-                    Order
-                  </Button>
-                </div>
+                  Order
+                </Button>
               </div>
-            </Grid>
+            </div>
           </Grid>
-        </div>
-      </Container>
+        </Grid>
+      </div>
     </div>
   );
 };

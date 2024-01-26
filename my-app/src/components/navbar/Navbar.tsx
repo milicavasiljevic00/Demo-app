@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
   useMenuItemsSwitch({ user, setItems });
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: "rgb(214, 129, 1)" }}>
+    <AppBar position="sticky" sx={{ backgroundColor: "rgb(226, 72, 33)" }}>
       <Toolbar>
         <Typography
           variant="h5"
@@ -57,10 +57,11 @@ const Navbar: React.FC = () => {
           sx={{
             flexGrow: 1,
             display: { xs: "none", md: "flex" },
-            fontFamily: "revert-layer",
+            fontFamily: "cursive",
+            fontSize: "32px",
           }}
         >
-          FoodDelivery
+          ShopEase
         </Typography>
 
         {user && user.role !== "" && user.role === "USER" && (
@@ -131,9 +132,12 @@ const Navbar: React.FC = () => {
         <Typography
           variant="h6"
           component="div"
-          sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+          sx={{
+            flexGrow: 1,
+            display: { xs: "flex", md: "none", fontFamily: "cursive" },
+          }}
         >
-          Caption
+          ShopEase
         </Typography>
 
         {user && user.role !== "" && user.role === "USER" && (

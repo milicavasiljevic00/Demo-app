@@ -176,7 +176,7 @@ const RegisterForm = () => {
                   <Button
                     onClick={handleSubmit(onSubmit)}
                     style={{
-                      backgroundColor: "rgb(214, 129, 1)",
+                      backgroundColor: "rgb(226, 72, 33)",
                       marginTop: "20px",
                     }}
                     fullWidth

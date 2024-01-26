@@ -1,23 +1,24 @@
-$background-color_primary: rgb(206, 176, 132);
+$background-color_primary: rgb(255, 255, 255);
 $background-color_secondary: #fff;
 $color_primary: red;
 $color_secondary: rgb(50, 65, 94);
 
 .bg-login-color {
   background-color: $background-color_primary;
-  position: absolute;
   top: 55px;
   left: 0;
   right: 0;
   bottom: 0;
+  height: fit-content;
 }
 
 .div-wrapper {
   background-color: $background-color_secondary;
-  width: 50%;
+  width: 30%;
   padding: 20px 30px 30px;
   border-radius: 20px;
   margin: 100px auto;
+  box-shadow: 8px 6px 10px 10px rgb(214, 211, 211);
 }
 
 .wrapper-content {
