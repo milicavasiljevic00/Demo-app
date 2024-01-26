@@ -1,16 +1,18 @@
 import { MenuItems } from "./MenuItems";
 
 export const MenuItemsUser: MenuItems = {
-    items: [{
-        title:'Home',
-        url:'home'
+  items: [
+    {
+      title: "Home",
+      url: "home",
     },
     {
-        title:'Products',
-        url:'products-user'
+      title: "Products",
+      url: "products-user",
     },
     {
-        title:'My orders',
-        url:'my-orders'
-    }]
-}
+      title: "My orders",
+      url: "my-orders",
+    },
+  ],
+};

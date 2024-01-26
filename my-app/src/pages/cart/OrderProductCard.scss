@@ -2,68 +2,68 @@ $color_primary: #fff;
 $color_secondary: rgb(180, 112, 8);
 $color_thirdly: rgb(134, 85, 10);
 $font-family_primary: "Times New Roman", Times, serif;
-$background-color_primary: rgb(211, 146, 48);
+$background-color_primary: #e2930c;
 $background-color_secondary: #fff;
 $background-color_thirdly: rgb(241, 231, 231);
 
 .order-product-card-container {
-    display: flex;
-    flex-direction: row;
-    background-color: $background-color_primary;
-    border-radius: 5px;
-    color: $color_primary;
-    width: 90%;
-    min-height: 50px;
-    margin-top: 20px;
-    margin-left: 17px;
-    font-size: 18px;
-    box-shadow: 2px 5px 5px 3px rgb(211, 209, 209);
-    padding: 10px;
+  display: flex;
+  flex-direction: row;
+  background-color: $background-color_primary;
+  border-radius: 5px;
+  color: $color_primary;
+  width: 90%;
+  min-height: 50px;
+  margin-top: 20px;
+  margin-left: 17px;
+  font-size: 18px;
+  box-shadow: 2px 5px 5px 3px rgb(211, 209, 209);
+  padding: 10px;
 }
 
 .order-product-name {
-    display: grid;
-    grid-template-columns: 60% 30% 10%;
-    width: 90%;
-    padding: 10px;
+  display: grid;
+  grid-template-columns: 60% 30% 10%;
+  width: 90%;
+  padding: 10px;
 }
 
 .price-and-quantity {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .plus-minus-buttons {
-    display: grid;
-    grid-template-rows: 50% 50%;
-    width: 10%;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  width: 10%;
 }
 
 .plus-btn {
-    width: 94%;
-    height: 94%;
-    background-color: $background-color_secondary;
-    color: $color_thirdly;
-    border: none;
-    font-size: xx-large;
-    border-radius: 3px;
+  width: 94%;
+  height: 94%;
+  background-color: $background-color_secondary;
+  color: $color_thirdly;
+  border: none;
+  font-size: xx-large;
+  border-radius: 3px;
 }
 
 .plus-btn:hover {
-    cursor: pointer;
-    background-color: $background-color_thirdly;
+  cursor: pointer;
+  background-color: $background-color_thirdly;
 }
 
 .remove-button {
-    background-color: none;
-    align-items: center;
+  background-color: none;
+  align-items: center;
 }
 
 .remove-product-icon {
-    margin-right: 3px;
-    margin-left: 10px;
+  margin-right: 3px;
+  margin-left: 10px;
 }
 
 .remove-product-icon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }

@@ -5,7 +5,7 @@ import { deleteRequest, getCredentials, getRequest, postRequest, putRequest, set
 import { RegisterFormValue } from "../../models/register-form-value/RegisterFormValue";
 import { LoginFormValue } from "../../models/login-form-value/LoginFormValue";
 import { CreateUserResponse } from "../helpers/CreateUserResponse";
-import { UserContent } from "../../context/UserContent";
+import { UserContent } from "../../user-context/UserContent";
 import { AdminUserFormValue } from "../../models/admin-user-form-value/AdminUserFormValue";
 import { UserForAdmin } from "../../models/entities/UserForAdmin";
 

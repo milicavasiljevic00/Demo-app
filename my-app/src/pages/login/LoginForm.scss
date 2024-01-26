@@ -1,22 +1,22 @@
-$background-color_primary: rgb(206, 176, 132);
+$background-color_primary: #f3b4a5;
 $background-color_secondary: #fff;
-$color_primary:red;
+$color_primary: red;
 
-.bg-color{
-    background-color: $background-color_primary;
-    position: absolute;
-    top: 55px;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.bg-color {
+  top: 55px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: fit-content;
 }
-.form-wrapper{
-    background-color: $background-color_secondary;
-    width: 50%;
-    padding: 20px 30px 30px;
-    border-radius: 20px;
-    margin: 100px auto;
+.form-wrapper {
+  background-color: $background-color_secondary;
+  width: 50%;
+  padding: 20px 30px 30px;
+  border-radius: 20px;
+  margin: 100px auto;
+  box-shadow: 8px 6px 10px 10px rgb(219, 217, 217);
 }
-.error-msg{
-    color: $color_primary;
+.error-msg {
+  color: $color_primary;
 }

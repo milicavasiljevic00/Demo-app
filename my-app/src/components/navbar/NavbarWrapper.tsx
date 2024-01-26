@@ -1,13 +1,15 @@
 import { Outlet } from "react-router";
 import Navbar from "./Navbar";
+import Footer from "../footer/Footer";
 
 const NavbarWrapper: React.FC = () => {
-    return (
+  return (
     <div>
-        <Navbar/>
-        <Outlet/>
+      <Navbar />
+      <Outlet />
+      <Footer />
     </div>
-    )
+  );
 };
 
 export default NavbarWrapper;

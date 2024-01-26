@@ -7,29 +7,29 @@ $background-color_secondary: #fff;
 $background-color_thirdly: rgb(241, 231, 231);
 
 .product-details-card-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: $background-color_primary;
-    border-radius: 5px;
-    color: $color_primary;
-    width: 90%;
-    max-height: 30px;
-    margin-top: 15px;
-    margin-left: 15px;
-    font-size: 18px;
-    box-shadow: 2px 5px 5px 3px rgb(211, 209, 209);
-    padding: 10px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $background-color_primary;
+  border-radius: 5px;
+  color: $color_primary;
+  width: 90%;
+  max-height: 30px;
+  margin-top: 15px;
+  margin-left: 15px;
+  font-size: 18px;
+  box-shadow: 2px 5px 5px 3px rgb(211, 209, 209);
+  padding: 10px;
+  align-items: center;
 }
 
 .product-details-name {
-    display: grid;
-    grid-template-columns: 60% 30% 10%;
-    width: 95%;
+  display: grid;
+  grid-template-columns: 60% 30% 10%;
+  width: 95%;
 }
 
 .details-price-and-quantity {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
