@@ -1,5 +1,5 @@
-export interface ProductAdmin{
-    id:number;
-    name:string;
-    price:number;
+export interface ProductUser {
+  id: number;
+  name: string;
+  price: number;
 }

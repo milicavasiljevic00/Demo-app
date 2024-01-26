@@ -1,8 +1,21 @@
-.products-list{
-display: grid;
-grid-template-columns: repeat(3,350px);
-row-gap: 60px;
-column-gap: 60px;
-max-width: 100%;
-margin-top: 50px;
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(3, 350px);
+  row-gap: 60px;
+  column-gap: 60px;
+  max-width: 100%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 1200px) {
+  .products-list {
+    grid-template-columns: repeat(2, 300px);
+  }
+}
+
+@media (max-width: 800px) {
+  .products-list {
+    grid-template-columns: repeat(1, 300px);
+  }
 }

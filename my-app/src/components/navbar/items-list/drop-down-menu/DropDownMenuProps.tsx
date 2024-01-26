@@ -1,3 +1,3 @@
 export interface DropDownMenuProps {
-    handleLogout: () => void;
+  handleLogout: () => void;
 }

@@ -1,4 +1,4 @@
 export interface UserContactInfo {
-    email: string;
-    contactPhone: string;
+  email: string;
+  contactPhone: string;
 }

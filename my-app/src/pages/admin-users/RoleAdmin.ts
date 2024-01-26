@@ -1,3 +1,3 @@
 export interface RoleAdmin {
-    id: number;
+  id: number;
 }
